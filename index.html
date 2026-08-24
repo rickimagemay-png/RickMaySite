@@ -1,10 +1,284 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>RickMay.p.ua</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rick May | Official Tribute & Legacy</title>
+  <style>
+    :root {
+      --bg-color: #0d0f12;
+      --card-bg: #161b22;
+      --accent-color: #d9534f;
+      --accent-hover: #ff6b67;
+      --text-main: #f0f6fc;
+      --text-muted: #8b949e;
+      --border-color: #30363d;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* Header & Nav */
+    header {
+      background-color: rgba(22, 27, 34, 0.9);
+      backdrop-filter: blur(8px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-container {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-main);
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      color: var(--accent-color);
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+
+    nav a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: var(--accent-color);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 6rem 2rem 4rem;
+      text-align: center;
+      background: linear-gradient(180deg, rgba(217, 83, 79, 0.08) 0%, rgba(13, 15, 18, 0) 100%);
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.5px;
+    }
+
+    .hero .dates {
+      font-size: 1.2rem;
+      color: var(--accent-color);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 650px;
+      margin: 0 auto 2rem;
+    }
+
+    /* Section Styling */
+    section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 4rem 2rem;
+    }
+
+    .section-title {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background-color: var(--accent-color);
+      margin: 0.5rem auto 0;
+      border-radius: 2px;
+    }
+
+    /* Feature Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 8px;
+      padding: 2rem;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--accent-color);
+    }
+
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-main);
+    }
+
+    .card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Quote Banner */
+    .quote-banner {
+      background-color: var(--card-bg);
+      border-top: 1px solid var(--border-color);
+      border-bottom: 1px solid var(--border-color);
+      text-align: center;
+      padding: 4rem 2rem;
+      margin: 2rem 0;
+    }
+
+    .quote-banner blockquote {
+      font-size: 1.8rem;
+      font-style: italic;
+      font-weight: 600;
+      color: var(--text-main);
+      max-width: 800px;
+      margin: 0 auto 1rem;
+    }
+
+    .quote-banner cite {
+      color: var(--accent-color);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border-color);
+      text-align: center;
+      padding: 2rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .nav-container { flex-direction: column; gap: 1rem; }
+      .quote-banner blockquote { font-size: 1.3rem; }
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to RickMay.p.ua</h1>
-    <p>This is my website.</p>
+
+  <!-- Header Section -->
+  <header>
+    <div class="nav-container">
+      <div class="logo">Rick <span>May</span></div>
+      <nav>
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#roles">Notable Roles</a></li>
+          <li><a href="#legacy">Legacy</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Banner -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Rick May</h1>
+      <div class="dates">1940 – 2020</div>
+      <p>Honoring the life, voice, and legacy of an iconic actor, theater director, and voice artist who inspired millions across the globe.</p>
+    </div>
+  </section>
+
+  <!-- Quote Section -->
+  <div class="quote-banner">
+    <blockquote>"You were good, son, real good. Maybe even the best."</blockquote>
+    <cite>— In Loving Memory</cite>
+  </div>
+
+  <!-- About Section -->
+  <section id="about">
+    <h2 class="section-title">Biography</h2>
+    <div class="card">
+      <h3>A Lifetime Dedicated to Performance</h3>
+      <p>Rick May was a veteran performer whose career spanned decades across stage, screen, and voice work. Beyond his iconic performances in interactive media, he served as an accomplished theater director, artistic leader, and teacher, shaping generations of dramatic talent.</p>
+    </div>
+  </section>
+
+  <!-- Roles Grid -->
+  <section id="roles">
+    <h2 class="section-title">Iconic Roles</h2>
+    <div class="grid">
+      <div class="card">
+        <h3>The Soldier</h3>
+        <p>Provided the unforgettable voice and booming presence for Team Fortress 2's iconic Soldier, delivering quotes that became central to gaming culture.</p>
+      </div>
+      <div class="card">
+        <h3>Peppy Hare</h3>
+        <p>Voiced the legendary mentor figure in Star Fox 64, originating some of the most enduring phrases in video game history.</p>
+      </div>
+      <div class="card">
+        <h3>Theater & Stage</h3>
+        <p>Directed and acted in hundreds of theatrical productions, including classic Shakespearean works, musicals, and contemporary drama.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Legacy Section -->
+  <section id="legacy">
+    <h2 class="section-title">His Legacy</h2>
+    <div class="card">
+      <h3>Remembered by Millions</h3>
+      <p>Rick May's work transcended standard voice acting, creating emotional connections with audiences world wide. His warmth, humor, and commanding performance style leave a permanent mark on entertainment history.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; Rick May Official Tribute. Created with respect and admiration.</p>
+  </footer>
+
 </body>
 </html>

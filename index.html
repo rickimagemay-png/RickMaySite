@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Rick May Truthers</title>
+  <title>Rick May OS v4.08</title>
   <style>
     * {
       box-sizing: border-box;
@@ -17,143 +17,225 @@
       flex-direction: column;
       justify-content: space-between;
       align-items: center;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      /* Initial Background */
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      font-family: 'Courier New', Courier, monospace;
+      background: linear-gradient(rgba(0, 15, 5, 0.9), rgba(0, 15, 5, 0.9)),
                   url('images/background2.gif') no-repeat center center fixed;
       background-size: cover;
-      color: #ffffff;
-      padding: 2rem 1rem 1rem 1rem;
+      color: #00ff66;
+      padding: 0 0 1rem 0;
       transition: background 0.5s ease;
     }
 
-    /* Class added via JavaScript after unlocking */
     body.unlocked {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      background: linear-gradient(rgba(0, 15, 5, 0.85), rgba(0, 15, 5, 0.85)),
                   url('images/background.gif') no-repeat center center fixed;
       background-size: cover;
     }
 
-    /* Lock Screen Section */
+    /* OS Top Taskbar */
+    .os-bar {
+      width: 100%;
+      background: #002200;
+      border-bottom: 2px solid #00ff66;
+      padding: 0.4rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 10px rgba(0, 255, 102, 0.3);
+    }
+
+    .os-bar-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .os-bar-logo {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+    }
+
+    /* Lock Screen Boot System */
     .lock-screen {
       margin: auto 0;
       text-align: center;
     }
 
     .lock-btn {
-      background: transparent;
-      border: none;
+      background: rgba(0, 20, 10, 0.9);
+      border: 2px solid #00ff66;
+      padding: 1.5rem 2rem;
+      border-radius: 6px;
       cursor: pointer;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 1.2rem;
+      gap: 1rem;
       outline: none;
-      transition: transform 0.25s ease;
+      box-shadow: 0 0 20px rgba(0, 255, 102, 0.4);
+      transition: all 0.3s ease;
     }
 
     .lock-btn:hover {
-      transform: scale(1.08);
+      transform: scale(1.03);
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.8);
+      background: rgba(0, 40, 20, 0.95);
     }
 
     .lock-btn img {
-      width: 200px;
+      width: 120px;
       height: auto;
-      filter: drop-shadow(0 0 15px rgba(0, 229, 255, 0.8));
+      filter: drop-shadow(0 0 10px #00ff66);
     }
 
     .lock-btn span {
-      color: #00e5ff;
-      font-size: 1.4rem;
+      color: #00ff66;
+      font-size: 1.1rem;
       font-weight: bold;
-      letter-spacing: 2.5px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      text-shadow: 0 0 10px rgba(0, 229, 255, 0.7);
+      text-shadow: 0 0 8px #00ff66;
     }
 
-    /* Container for all content boxes */
+    /* OS Desktop Window */
     .card-container {
-      display: none; /* Hidden by default */
-      background: rgba(20, 20, 25, 0.85);
-      padding: 3.5rem 3rem;
-      border-radius: 20px;
+      display: none;
+      background: rgba(5, 15, 8, 0.95);
+      border-radius: 6px;
       text-align: center;
-      max-width: 650px;
-      width: 95%;
-      backdrop-filter: blur(8px);
+      max-width: 520px;
+      width: 90%;
+      backdrop-filter: blur(10px);
       margin: auto 0;
-      
-      border: 2px solid transparent;
-      background-clip: padding-box;
-      box-shadow: 0 0 25px rgba(0, 229, 255, 0.35),
-                  inset 0 0 20px rgba(0, 229, 255, 0.15);
+      border: 2px solid #00ff66;
+      box-shadow: 0 0 30px rgba(0, 255, 102, 0.3),
+                  inset 0 0 15px rgba(0, 255, 102, 0.1);
       position: relative;
+      overflow: hidden;
     }
 
-    .card-container::before {
-      content: '';
+    /* Window Header Bar */
+    .window-header {
+      background: #003311;
+      border-bottom: 2px solid #00ff66;
+      padding: 0.5rem 0.8rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+      font-weight: bold;
+    }
+
+    .window-title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #ffffff;
+    }
+
+    .window-logo {
+      width: 20px;
+      height: 20px;
+      object-fit: contain;
+    }
+
+    .window-controls {
+      display: flex;
+      gap: 0.4rem;
+    }
+
+    .win-btn {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 1px solid #00ff66;
+      display: inline-block;
+    }
+
+    .win-close { background: #ff3333; border-color: #ff3333; }
+    .win-min { background: #ffbb00; border-color: #ffbb00; }
+    .win-max { background: #00ff66; border-color: #00ff66; }
+
+    .window-body {
+      padding: 1.5rem 1.2rem;
+    }
+
+    /* Scanline effect */
+    .card-container::after {
+      content: " ";
+      display: block;
       position: absolute;
-      top: -2px; left: -2px; right: -2px; bottom: -2px;
-      background: linear-gradient(45deg, #00e5ff, #ff007f, #7928ca, #00e5ff);
-      border-radius: 22px;
-      z-index: -1;
-      background-size: 300% 300%;
-      animation: borderGlow 6s ease infinite;
+      top: 0; left: 0; bottom: 0; right: 0;
+      background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%);
+      background-size: 100% 4px;
+      z-index: 2;
+      pointer-events: none;
+      opacity: 0.7;
     }
 
-    @keyframes borderGlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
+    .sys-stamp {
+      display: inline-block;
+      border: 1px solid #00ff66;
+      background: rgba(0, 255, 102, 0.1);
+      color: #00ff66;
+      padding: 0.2rem 0.6rem;
+      font-weight: bold;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 0.8rem;
     }
 
     h1, h2 {
       letter-spacing: 2px;
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
       text-transform: uppercase;
-      background: linear-gradient(90deg, #fff, #a5b4fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: #ffffff;
+      text-shadow: 0 0 10px #00ff66;
     }
 
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
+    h1 { font-size: 1.6rem; }
+    h2 { font-size: 1.3rem; }
 
     .intro-text, .content-text {
-      font-size: 1rem;
-      line-height: 1.6;
-      color: #d1d5db;
-      margin-bottom: 2rem;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      color: #b0e8c4;
+      margin-bottom: 1.2rem;
     }
 
-    .button-group {
-      display: flex;
-      justify-content: center;
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
       gap: 0.8rem;
-      flex-wrap: wrap;
+      margin-top: 0.8rem;
     }
 
     .btn {
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      border-radius: 6px;
+      background: rgba(0, 255, 102, 0.08);
+      color: #00ff66;
+      border: 1px solid #00ff66;
+      padding: 0.65rem 0.5rem;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: bold;
+      letter-spacing: 1px;
+      border-radius: 3px;
       cursor: pointer;
       transition: all 0.25s ease;
       text-transform: uppercase;
       text-decoration: none;
-      display: inline-block;
-      margin-top: 1rem;
+      box-shadow: 0 0 8px rgba(0, 255, 102, 0.1);
     }
 
     .btn:hover {
-      background: #00e5ff;
-      color: #000;
-      box-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+      background: #00ff66;
+      color: #050a05;
+      box-shadow: 0 0 15px #00ff66;
       transform: translateY(-2px);
     }
 
@@ -161,198 +243,328 @@
       transform: translateY(0);
     }
 
-    /* Scrollable Grid Container for "The Good" Section */
+    /* Scrollable Container */
     .scroll-container {
-      max-height: 400px;
+      max-height: 320px;
       overflow-y: auto;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      /* Custom Scrollbar */
+      padding: 0.6rem;
+      margin-bottom: 0.8rem;
+      text-align: left;
       scrollbar-width: thin;
-      scrollbar-color: #00e5ff rgba(255, 255, 255, 0.1);
+      scrollbar-color: #00ff66 rgba(0, 20, 10, 0.5);
     }
 
     .scroll-container::-webkit-scrollbar {
-      width: 8px;
+      width: 6px;
     }
 
     .scroll-container::-webkit-scrollbar-track {
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 4px;
+      background: rgba(0, 20, 10, 0.5);
     }
 
     .scroll-container::-webkit-scrollbar-thumb {
-      background: #00e5ff;
-      border-radius: 4px;
+      background: #00ff66;
     }
 
-    /* 3-Column Grid Layout */
-    .person-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.2rem;
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding-left: 15px;
+      border-left: 2px dashed #00ff66;
     }
 
-    /* Person Card Style */
-    .person-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 10px;
-      padding: 0.8rem;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    .timeline-item {
+      position: relative;
+      margin-bottom: 1rem;
+      padding-left: 10px;
     }
 
-    .person-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
-      border-color: rgba(0, 229, 255, 0.4);
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -20px;
+      top: 4px;
+      width: 6px;
+      height: 6px;
+      background: #00ff66;
+      box-shadow: 0 0 6px #00ff66;
     }
 
-    .person-link {
-      text-decoration: none;
+    .timeline-year {
+      font-weight: bold;
       color: #ffffff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
+      font-size: 0.95rem;
+      letter-spacing: 1px;
     }
 
-    .person-img {
-      width: 100%;
-      aspect-ratio: 1 / 1;
-      object-fit: cover;
-      border-radius: 8px;
-      border: 1px solid rgba(0, 229, 255, 0.3);
+    .timeline-desc {
+      color: #b0e8c4;
+      font-size: 0.85rem;
+      line-height: 1.4;
     }
 
-    .person-name {
+    /* Proof Cards */
+    .proof-box {
+      background: rgba(0, 30, 15, 0.5);
+      border: 1px solid rgba(0, 255, 102, 0.4);
+      padding: 0.8rem;
+      margin-bottom: 0.8rem;
+      border-radius: 3px;
+    }
+
+    .proof-box h3 {
+      color: #ffffff;
       font-size: 0.9rem;
-      font-weight: 600;
-      color: #a5b4fc;
-      word-break: break-word;
+      margin-bottom: 0.3rem;
+      letter-spacing: 1px;
     }
 
-    .person-card:hover .person-name {
-      color: #00e5ff;
-    }
-
-    /* Footer Section (Hidden by default) */
+    /* Footer */
     footer {
       display: none;
       width: 100%;
-      max-width: 650px;
+      max-width: 520px;
       text-align: center;
-      padding: 1.5rem 1rem 0.5rem 1rem;
-      font-size: 0.85rem;
-      color: #9ca3af;
+      padding: 0.8rem 0.5rem 0.2rem 0.5rem;
+      font-size: 0.75rem;
+      color: #00ff66;
+      opacity: 0.8;
     }
 
     footer p {
-      margin-bottom: 0.4rem;
+      margin-bottom: 0.2rem;
     }
 
     footer a {
-      color: #00e5ff;
+      color: #ffffff;
       text-decoration: none;
+      border-bottom: 1px dotted #00ff66;
     }
 
     footer a:hover {
-      text-decoration: underline;
+      color: #00ff66;
     }
   </style>
 </head>
 <body>
 
-  <!-- Initial Lock Screen -->
+  <!-- Top System Bar -->
+  <div class="os-bar">
+    <div class="os-bar-title">
+      <img src="images/rickos.png" alt="Rick May OS Logo" class="os-bar-logo">
+      <span>Rick May OS v4.08</span>
+    </div>
+    <div id="clock-display">STATUS: LOCKED</div>
+  </div>
+
+  <!-- Boot Lock Screen -->
   <div id="lock-screen" class="lock-screen">
     <button class="lock-btn" onclick="unlockSite()">
-      <img src="images/lock.png" alt="Lock Icon">
-      <span>Learn the truth</span>
+      <img src="images/lock.png" alt="Rick May OS Icon">
+      <span>Unlock The Truth</span>
     </button>
   </div>
 
-  <!-- Background Music -->
+  <!-- Audio -->
   <audio id="bg-music" loop>
     <source src="sounds/background-music.mp3" type="audio/mpeg">
   </audio>
 
-  <!-- Main Menu Content Box (Hidden initially) -->
+  <!-- Main Menu Window -->
   <div id="main-content" class="card-container">
-    <h1>Rick May Truthers</h1>
+    <div class="window-header">
+      <div class="window-title">
+        <img src="images/rickos.png" alt="Rick OS Logo" class="window-logo">
+        <span>C:\RICK_MAY_OS\MAIN_MENU.EXE</span>
+      </div>
+      <div class="window-controls">
+        <span class="win-btn win-min"></span>
+        <span class="win-btn win-max"></span>
+        <span class="win-btn win-close"></span>
+      </div>
+    </div>
     
-    <p class="intro-text">
-      Welcome to the official hub. Explore the archives, uncover the hidden sound bytes, and press the modules below to trigger custom audio transmissions.
-    </p>
+    <div class="window-body">
+      <div class="sys-stamp">SYSTEM READY // DIRECTORY INITIALIZED</div>
+      <h1>Rick May Truthers</h1>
+      
+      <p class="intro-text">
+        Welcome to Rick May OS. Select an executable file below to launch intelligence dossiers, event logs, evidence archives, and audio directory.
+      </p>
 
-    <div class="button-group">
-      <button class="btn" onclick="playAndShow('good')">The Good</button>
-      <button class="btn" onclick="playAndShow('bad')">The Bad</button>
-      <button class="btn" onclick="playAndShow('rick')">The Rick</button>
+      <div class="button-grid">
+        <button class="btn" onclick="showSection('info-section')">[DIR] Who Was Rick May?</button>
+        <button class="btn" onclick="showSection('timeline-section')">[EXE] Timeline.exe</button>
+        <button class="btn" onclick="showSection('proof-section')">[LOG] Rick May Proof</button>
+        <button class="btn" onclick="showSection('archive-section')">[AUD] Audio Archive</button>
+      </div>
     </div>
   </div>
 
-  <!-- "The Good" Section -->
-  <div id="good-section" class="card-container">
-    <h2>The Good</h2>
-    
-    <!-- Scrollable List Area -->
-    <div class="scroll-container">
-      <div class="person-grid">
-        
-        <!-- Person 1 -->
-        <div class="person-card">
-          <a href="https://steamcommunity.com/profiles/76561199155537590/" target="_blank" class="person-link">
-            <img src="images/good1.png" alt="Thick May" class="person-img">
-            <span class="person-name">Thick May</span>
-          </a>
-        </div>
-
-        <!-- Person 2 -->
-        <div class="person-card">
-          <a href="https://steamcommunity.com/id/67RICKMAYGREASE" target="_blank" class="person-link">
-            <img src="images/good2.png" alt="Rick May Ghost" class="person-img">
-            <span class="person-name">Rick May Ghost</span>
-          </a>
-        </div>
-
-        <!-- Person 3 -->
-        <div class="person-card">
-          <a href="https://steamcommunity.com/id/billgaither" target="_blank" class="person-link">
-            <img src="images/good3.png" alt="Bill Gaither" class="person-img">
-            <span class="person-name">Bill Gaither</span>
-          </a>
-        </div>
-
-        <!-- Add more person-cards below as needed! -->
-
+  <!-- Who Was Rick May Window -->
+  <div id="info-section" class="card-container">
+    <div class="window-header">
+      <div class="window-title">
+        <img src="images/rickos.png" alt="Rick OS Logo" class="window-logo">
+        <span>C:\RICK_MAY_OS\DOSSIER.TXT</span>
+      </div>
+      <div class="window-controls">
+        <span class="win-btn win-min"></span>
+        <span class="win-btn win-max"></span>
+        <span class="win-btn win-close"></span>
       </div>
     </div>
 
-    <button class="btn" onclick="showMainMenu()">Return to Hub</button>
+    <div class="window-body">
+      <div class="sys-stamp">SUBJECT INTEL FILE</div>
+      <h2>Dossier: Rick May</h2>
+      
+      <div class="scroll-container">
+        <p class="content-text">
+          <strong>Subject:</strong> Rick May (September 21, 1940 – April 8, 2020)<br>
+          <strong>Class:</strong> Veteran Voice Actor / Theater Director / Educator
+        </p>
+        <p class="content-text">
+          May delivered historic voice performances across major media franchises. He provided the distinct voice for the <strong>Soldier</strong> in Valve's <em>Team Fortress 2</em> (yielding immortal phrases like <em>"You were good, son, real good. Maybe even the best."</em>).
+        </p>
+        <p class="content-text">
+          He also voiced tactical pilot <strong>Peppy Hare</strong> and <strong>Andross</strong> in <em>Star Fox 64</em>, originating the famous instruction: <em>"Do a barrel roll!"</em>.
+        </p>
+      </div>
+
+      <button class="btn" onclick="showMainMenu()">&lt; Back to Directory</button>
+    </div>
   </div>
 
-  <!-- "The Bad" Section -->
-  <div id="bad-section" class="card-container">
-    <h2>The Bad</h2>
-    <p class="content-text">
-      The dark truth revealed. Place your archives and documents here.
-    </p>
-    <button class="btn" onclick="showMainMenu()">Return to Hub</button>
+  <!-- Timeline Window -->
+  <div id="timeline-section" class="card-container">
+    <div class="window-header">
+      <div class="window-title">
+        <img src="images/rickos.png" alt="Rick OS Logo" class="window-logo">
+        <span>C:\RICK_MAY_OS\TIMELINE.EXE</span>
+      </div>
+      <div class="window-controls">
+        <span class="win-btn win-min"></span>
+        <span class="win-btn win-max"></span>
+        <span class="win-btn win-close"></span>
+      </div>
+    </div>
+
+    <div class="window-body">
+      <div class="sys-stamp">SYSTEM TIMELINE LOGS</div>
+      <h2>Operational History</h2>
+      
+      <div class="scroll-container">
+        <div class="timeline">
+          
+          <div class="timeline-item">
+            <span class="timeline-year">1940</span>
+            <p class="timeline-desc">Born September 21 in Seattle, Washington.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year">1960s – 1980s</span>
+            <p class="timeline-desc">Deployed with the U.S. Military in Japan, directing USO theatrical productions. Serves decades as regional theater director.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year">1997</span>
+            <p class="timeline-desc">Records iconic lines for Peppy Hare and Andross in <em>Star Fox 64</em>.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year">2007</span>
+            <p class="timeline-desc">Enlists as the voice of the Soldier in Valve's <em>Team Fortress 2</em>.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year">2010s</span>
+            <p class="timeline-desc">Extends voice work to <em>Dota 2</em> and <em>Age of Empires II</em> while teaching acting.</p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="timeline-year">2020</span>
+            <p class="timeline-desc">Passes away on April 8. Commemorated globally across interactive media and official in-game statues.</p>
+          </div>
+
+        </div>
+      </div>
+
+      <button class="btn" onclick="showMainMenu()">&lt; Back to Directory</button>
+    </div>
   </div>
 
-  <!-- "The Rick" Section -->
-  <div id="rick-section" class="card-container">
-    <h2>The Rick</h2>
-    <p class="content-text">
-      The final pieces of the puzzle. Place your ultimate findings here.
-    </p>
-    <button class="btn" onclick="showMainMenu()">Return to Hub</button>
+  <!-- Proof Window -->
+  <div id="proof-section" class="card-container">
+    <div class="window-header">
+      <div class="window-title">
+        <img src="images/rickos.png" alt="Rick OS Logo" class="window-logo">
+        <span>C:\RICK_MAY_OS\EVIDENCE.LOG</span>
+      </div>
+      <div class="window-controls">
+        <span class="win-btn win-min"></span>
+        <span class="win-btn win-max"></span>
+        <span class="win-btn win-close"></span>
+      </div>
+    </div>
+
+    <div class="window-body">
+      <div class="sys-stamp">EVIDENCE DIRECTORY</div>
+      <h2>Rick May Proof</h2>
+      
+      <div class="scroll-container">
+        <div class="proof-box">
+          <h3>File #01: Valve In-Game Monuments</h3>
+          <p class="timeline-desc">In May 2020, Valve deployed official Soldier bronze monuments across <em>Team Fortress 2</em> maps, embedding his legacy permanently into game code.</p>
+        </div>
+
+        <div class="proof-box">
+          <h3>File #02: Original Studio Audio Logs</h3>
+          <p class="timeline-desc">Voice print analysis verifies studio master tracks for <em>Star Fox 64</em> and <em>TF2</em>, matching theatrical production logs in Seattle archives.</p>
+        </div>
+
+        <div class="proof-box">
+          <h3>File #03: Military Arts Service</h3>
+          <p class="timeline-desc">USO theatrical service records verify military entertainment leadership during deployment in Japan.</p>
+        </div>
+      </div>
+
+      <button class="btn" onclick="showMainMenu()">&lt; Back to Directory</button>
+    </div>
   </div>
 
-  <!-- Footer Blurb & Contact Info -->
+  <!-- Audio Archive Window -->
+  <div id="archive-section" class="card-container">
+    <div class="window-header">
+      <div class="window-title">
+        <img src="images/rickos.png" alt="Rick OS Logo" class="window-logo">
+        <span>C:\RICK_MAY_OS\AUDIO_ARCHIVE.WAV</span>
+      </div>
+      <div class="window-controls">
+        <span class="win-btn win-min"></span>
+        <span class="win-btn win-max"></span>
+        <span class="win-btn win-close"></span>
+      </div>
+    </div>
+
+    <div class="window-body">
+      <div class="sys-stamp">AUDIO TRANSMISSIONS</div>
+      <h2>Sound Archives</h2>
+      
+      <div class="scroll-container">
+        <p class="content-text">
+          System audio files, voice tracks, and custom sound transmissions stored in this directory.
+        </p>
+      </div>
+
+      <button class="btn" onclick="showMainMenu()">&lt; Back to Directory</button>
+    </div>
+  </div>
+
+  <!-- Footer System Status -->
   <footer id="footer-content">
-    <p>Dedicated to preserving the truth and honoring legacy through sound.</p>
-    <p>Contact us: <a href="mailto:contact@rickmaytruthers.com">contact@rickmaytruthers.com</a></p>
+    <p>RICK MAY OS // RICK MAY TRUTHERS NETWORK</p>
+    <p>System Contact: <a href="mailto:contact@rickmaytruthers.com">contact@rickmaytruthers.com</a></p>
   </footer>
 
   <script>
@@ -360,40 +572,26 @@
       document.getElementById('lock-screen').style.display = 'none';
       document.getElementById('main-content').style.display = 'block';
       document.getElementById('footer-content').style.display = 'block';
+      document.getElementById('clock-display').innerText = 'STATUS: OS ONLINE';
       document.body.classList.add('unlocked');
 
       const bgMusic = document.getElementById('bg-music');
-      bgMusic.play().catch(err => console.log("Background music blocked:", err));
+      bgMusic.play().catch(err => console.log("Audio playback blocked:", err));
     }
 
-    const soundFiles = {
-      good: 'sounds/good.mp3',
-      bad: 'sounds/bad.mp3',
-      rick: 'sounds/rick.mp3'
-    };
-
-    function playAndShow(type) {
-      const filePath = soundFiles[type];
-      
-      if (filePath) {
-        const audio = new Audio(filePath);
-        audio.currentTime = 0;
-        audio.play().catch(error => console.log("Audio playback error:", error));
-      }
-
-      document.getElementById('main-content').style.display = 'none';
+    function showSection(sectionId) {
+      const sections = ['main-content', 'info-section', 'timeline-section', 'proof-section', 'archive-section'];
+      sections.forEach(id => {
+        document.getElementById(id).style.display = 'none';
+      });
 
       setTimeout(() => {
-        document.getElementById(type + '-section').style.display = 'block';
-      }, 300);
+        document.getElementById(sectionId).style.display = 'block';
+      }, 150);
     }
 
     function showMainMenu() {
-      document.getElementById('good-section').style.display = 'none';
-      document.getElementById('bad-section').style.display = 'none';
-      document.getElementById('rick-section').style.display = 'none';
-      
-      document.getElementById('main-content').style.display = 'block';
+      showSection('main-content');
     }
   </script>
 </body>
